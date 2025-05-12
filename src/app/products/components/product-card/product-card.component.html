@@ -1,0 +1,28 @@
+<div class="card bg-base-100 shadow-sm animate-fadeIn relative">
+  <div class="badge badge-secondary absolute top-2 right-2">NEW</div>
+  <figure>
+    <img [src]="product().images | productImage" [alt]="product().title" />
+    <!-- <img
+    [src]="imageUrl()"
+    [alt]="product().title"
+  /> -->
+    <!-- <img
+      [src]="'http://localhost:3000/api/files/product/' + product().images[0]"
+      [alt]="product().title"
+    /> -->
+  </figure>
+  <div class="card-body">
+    <h2
+      class="hover:underline cursor-pointer card-title font-MontserratAlternates text-accent text-lg"
+      [routerLink]="['/product', product().slug]"
+    >
+      {{ product().title }}
+    </h2>
+    <p>{{ product().description | slice : 0 : 70 }}...</p>
+    <div class="card-actions justify-end">
+      <a class="btn" [routerLink]="['/product', product().slug]">
+        Ver producto
+      </a>
+    </div>
+  </div>
+</div>

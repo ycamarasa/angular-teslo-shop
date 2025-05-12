@@ -1,0 +1,131 @@
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+      >
+        <li>
+          <a
+            routerLink="/gender/men"
+            routerLinkActive="text-secondary"
+            class="btn btn-ghost"
+            >Hombres</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/gender/women"
+            routerLinkActive="text-secondary"
+            class="btn btn-ghost"
+            >Mujeres</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/gender/kid"
+            routerLinkActive="text-secondary"
+            class="btn btn-ghost"
+            >Kids</a
+          >
+        </li>
+      </ul>
+    </div>
+    <a routerLink="/" class="font-MontserratAlternates btn btn-ghost text-xl">
+      Teslo
+      <span class="text-secondary">| shop</span>
+    </a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      <li>
+        <a
+          routerLink="/gender/men"
+          routerLinkActive="text-secondary"
+          class="btn btn-ghost"
+          >Hombres</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/gender/women"
+          routerLinkActive="text-secondary"
+          class="btn btn-ghost"
+          >Mujeres</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/gender/kid"
+          routerLinkActive="text-secondary"
+          class="btn btn-ghost"
+          >Kids</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-end gap-4">
+    @if(authService.authStatus() === 'authenticated') {
+    <div class="text-slate-700">
+      Bienvenid&#64;
+      <span class="text-secondary font-bold">{{
+        authService.user()?.fullName
+      }}</span>
+    </div>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+          />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+      >
+        <li>
+          <a class="justify-between">
+            Profile
+            <span class="badge">New</span>
+          </a>
+        </li>
+        @if (authService.isAdmin()) {
+        <li><a routerLink="/admin">Admin</a></li>
+        }
+        <li>
+          <button class="btn btn-sm btn-error" (click)="authService.logout()">
+            Log out
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    }
+    <!-- ---- -->
+    @else if (authService.authStatus() === 'not-authenticated') {
+    <a class="btn btn-secondary" routerLink="/auth/login">Login</a>
+    }
+    <!-- --- -->
+    @else {
+    <a href="">...</a>
+    }
+  </div>
+</div>
