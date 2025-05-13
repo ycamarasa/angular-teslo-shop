@@ -17,6 +17,7 @@ export class HomePageComponent {
   productsResource = rxResource({
     request: () => ({page: this.paginationService.currentPage() - 1}),
     loader: ({ request }) => {
+      // console.log('productsResource', status())
       return this.productsService.getProducts({
         offset: request.page * 9,
       });

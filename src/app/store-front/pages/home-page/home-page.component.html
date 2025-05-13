@@ -6,6 +6,11 @@
 <div
   class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mt-2"
 >
+
+  @if(productsResource.isLoading()) {
+  <span class="loading loading-spinner loading-xl"></span>
+  }
+  @else {
   @for (product of productsResource.value()?.products; track $index) {
   <product-card [product]="product" />
   }
@@ -14,9 +19,11 @@
   @empty {
   <p>No hay productos</p>
   }
+  }
 </div>
 
-<app-pagination class="mt-10"
+<app-pagination
+  class="mt-10"
   [pages]="productsResource.value()?.pages ?? 0"
   [currentPage]="paginationService.currentPage()"
 />
